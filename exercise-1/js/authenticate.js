@@ -13,12 +13,25 @@ $(function() {
     // Sign Up: Function to create account on firebase, then redirect to index.html
     var signUp = function() {
         // Get email, password, and display name
-
+        var email = $('#email').val();
+        var password = $('#password').val();
+        var displayName = $('#displayName').val();
+        console.log(email, password, displayName)
 
         // Create user, then set the user's display name
+        var auth = firebase.auth();
+        firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user){
 
                 // Set display name
-
+                user.updateProfile({
+                    displayName: displayName
+                }).then(function(){
+                    window.location = 'index/html';
+                })
+        })
+        .catch(function(error) {
+            alert(error);
+        })
     };
 
     // SignIn: Function to authenticate on Firebase, then redirect to index.html
@@ -39,7 +52,14 @@ $(function() {
     };
 
     // Assign event lister to form submission
-
+    $('form').on('submit', function() {
+        event.preventDefault();
+        if(this.id == 'sign-up') {
+            signUp();
+        } else {
+            signIn();
+        }
+    })
 
 
     // Assign click event to logout button
