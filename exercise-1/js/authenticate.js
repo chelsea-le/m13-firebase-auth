@@ -2,7 +2,14 @@
 $(function() {
 
     // Initialize Firebase
-
+      var config = {
+        apiKey: "AIzaSyBKaXtGQwgiaehnMSrC4Qmd7IC4Bar59Is",
+        authDomain: "authentication-test-590f2.firebaseapp.com",
+        databaseURL: "https://authentication-test-590f2.firebaseio.com",
+        storageBucket: "authentication-test-590f2.appspot.com",
+        messagingSenderId: "950377314729"
+      };
+      firebase.initializeApp(config);
     // Sign Up: Function to create account on firebase, then redirect to index.html
     var signUp = function() {
         // Get email, password, and display name
